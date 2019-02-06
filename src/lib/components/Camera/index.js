@@ -159,13 +159,13 @@ class Camera extends React.Component {
   }
 
   render () {
-    const {isImageMirror, isDisplayStartCameraError} = this.props;
+    const {isImageMirror, isDisplayStartCameraError, className} = this.props;
 
     let videoStyles = getVideoStyles(this.state.isShowVideo, isImageMirror);
     let showHideImgStyle = getShowHideStyle(!this.state.isShowVideo);
 
     return (
-      <div className="react-html5-camera-photo">
+      <div className={className}>
         <DisplayError
           cssClass={'display-error'}
           isDisplayError={isDisplayStartCameraError}
@@ -173,6 +173,8 @@ class Camera extends React.Component {
         />
         <WhiteFlash
           isShowWhiteFlash={!this.state.isShowVideo}
+          whiteFlashClassName={this.props.whiteFlashClassName}
+          whiteFlashTransitionClassName={this.props.whiteFlashTransitionClassName}
         />
         <img
           style={showHideImgStyle}
@@ -188,6 +190,10 @@ class Camera extends React.Component {
         <CircleButton
           isClicked={!this.state.isShowVideo}
           onClick={this.handleTakePhoto}
+          innerCircleClassName={this.props.innerCircleClassName}
+          innerCircleClickedClassName={this.props.innerCircleClickedClassName}
+          outerCicleClassName={this.props.outerCicleClassName}
+          circlesContainerClassName={this.props.circlesContainerClassName}
         />
       </div>
     );
@@ -202,6 +208,14 @@ export {
 export default Camera;
 
 Camera.propTypes = {
+  className: PropTypes.string.isRequired,
+  whiteFlashClassName: PropTypes.string.isRequired,
+  whiteFlashTransitionClassName: PropTypes.string.isRequired,
+  innerCircleClassName: PropTypes.string.isRequired,
+  innerCircleClickedClassName: PropTypes.string.isRequired,
+  outerCicleClassName: PropTypes.string.isRequired,
+  circlesContainerClassName: PropTypes.string.isRequired,
+
   onTakePhoto: PropTypes.func.isRequired,
   onCameraError: PropTypes.func,
   idealFacingMode: PropTypes.string,

@@ -2,17 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles/whiteFlash.css';
 
-export const WhiteFlash = ({ isShowWhiteFlash }) => {
-  const flashDoTransition = isShowWhiteFlash ? 'do-transition' : '';
-  const flashClasses = `${flashDoTransition} normal`;
+export const WhiteFlash = ({ isShowWhiteFlash, whiteFlashClassName, whiteFlashTransitionClassName }) => {
+  const flashDoTransition = isShowWhiteFlash ? whiteFlashTransitionClassName : '';
+  const flashClasses = `${whiteFlashClassName} ${flashDoTransition}`;
 
   return (
-    <div id="white-flash" className={flashClasses}>
+    <div className={flashClasses}>
     </div>
   );
 };
 
 WhiteFlash.propTypes = {
+  whiteFlashClassName: PropTypes.string.isRequired,
+  whiteFlashTransitionClassName: PropTypes.string.isRequired,
   isShowWhiteFlash: PropTypes.bool.isRequired
 };
 

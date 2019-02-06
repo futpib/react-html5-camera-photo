@@ -11,9 +11,8 @@ export const DisplayError = ({ isDisplayError, errorMsg, cssClass }) => {
     return null;
   }
 
-  console.log('cssClass', cssClass);
   return (
-    <div className={cssClass} id="display-error">
+    <div className={cssClass}>
       <h1>Camera error: {errorMsg}</h1>
     </div>
   );

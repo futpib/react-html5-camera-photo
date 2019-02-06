@@ -3,12 +3,19 @@ import PropTypes from 'prop-types';
 
 import './styles/circleButton.css';
 
-export const CircleButton = ({ onClick, isClicked }) => {
-  const innerCircleClasses = isClicked ? 'is-clicked' : '';
+export const CircleButton = ({
+  onClick,
+  isClicked,
+  innerCircleClassName,
+  innerCircleClickedClassName,
+  outerCicleClassName,
+  circlesContainerClassName
+}) => {
+  const innerCircleClasses = isClicked ? innerCircleClickedClassName : '';
   return (
-    <div id="container-circles">
+    <div className={circlesContainerClassName}>
       <div
-        id="outer-circle"
+        className={outerCicleClassName}
         onClick = {
           (e) => {
             if (!isClicked) {
@@ -17,7 +24,7 @@ export const CircleButton = ({ onClick, isClicked }) => {
           }
         }
       >
-        <div id="inner-circle" className={innerCircleClasses}>
+        <div className={`${innerCircleClassName} ${innerCircleClasses}`}>
         </div>
       </div>
     </div>
@@ -25,6 +32,10 @@ export const CircleButton = ({ onClick, isClicked }) => {
 };
 
 CircleButton.propTypes = {
+  innerCircleClassName: PropTypes.string.isRequired,
+  innerCircleClickedClassName: PropTypes.string.isRequired,
+  outerCicleClassName: PropTypes.string.isRequired,
+  circlesContainerClassName: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   isClicked: PropTypes.bool.isRequired
 };
